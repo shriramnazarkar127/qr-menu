@@ -3,19 +3,147 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QR Menu</title>
+
+  <title>QR Menu | Digital Restaurant Menu</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #222;
+    }
+
+    .header {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #ccc;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 25px 15px;
+    }
+
+    .category {
+      margin-bottom: 30px;
+    }
+
+    .category h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 8px;
+    }
+
+    .food-card {
+      background: white;
+      padding: 18px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .food-info h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .food-info p {
+      color: #777;
+      font-size: 14px;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 25px;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Welcome to QR Menu</h1>
-  <p>Digital Menu for Restaurants</p>
 
-  <h2>Starters</h2>
-  <p>Paneer Tikka — ₹180</p>
-  <p>Veg Manchurian — ₹150</p>
+  <header class="header">
+    <h1>QR Menu</h1>
+    <p>Digital Menu for Restaurants</p>
+  </header>
 
-  <h2>Main Course</h2>
-  <p>Paneer Butter Masala — ₹220</p>
-  <p>Veg Biryani — ₹180</p>
+  <main class="container">
+
+    <section class="category">
+      <h2>Starters</h2>
+
+      <div class="food-card">
+        <div class="food-info">
+          <h3>Paneer Tikka</h3>
+          <p>Grilled cottage cheese with Indian spices</p>
+        </div>
+        <div class="price">₹180</div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-info">
+          <h3>Veg Manchurian</h3>
+          <p>Crispy vegetable balls in Manchurian sauce</p>
+        </div>
+        <div class="price">₹150</div>
+      </div>
+
+    </section>
+
+    <section class="category">
+      <h2>Main Course</h2>
+
+      <div class="food-card">
+        <div class="food-info">
+          <h3>Paneer Butter Masala</h3>
+          <p>Paneer cooked in rich creamy tomato gravy</p>
+        </div>
+        <div class="price">₹220</div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-info">
+          <h3>Veg Biryani</h3>
+          <p>Fragrant basmati rice with vegetables and spices</p>
+        </div>
+        <div class="price">₹180</div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Powered by QR Menu</p>
+  </footer>
+
 </body>
 </html>
