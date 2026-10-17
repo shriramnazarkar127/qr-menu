@@ -169,6 +169,35 @@
     </div>
 
     <div id="restaurantList">
+      
+<hr>
+
+<h2>Add Menu Item</h2>
+
+<div class="form-container">
+  <label for="menuRestaurant">Select Restaurant</label>
+  <select id="menuRestaurant">
+    <option value="">Loading restaurants...</option>
+  </select>
+
+  <label for="itemName">Food Name</label>
+  <input id="itemName" type="text" placeholder="e.g. Paneer Tikka">
+
+  <label for="itemCategory">Category</label>
+  <input id="itemCategory" type="text" placeholder="e.g. Starters">
+
+  <label for="itemDescription">Description</label>
+  <textarea id="itemDescription" placeholder="Describe the dish"></textarea>
+
+  <label for="itemPrice">Price (₹)</label>
+  <input id="itemPrice" type="number" min="0" step="0.01" placeholder="180">
+
+  <label for="itemImage">Image URL (optional)</label>
+  <input id="itemImage" type="url" placeholder="https://example.com/food.jpg">
+
+  <button type="button" onclick="saveMenuItem()">Save Menu Item</button>
+</div>
+
 
       <div class="restaurant-card">
         <h3>No restaurants added yet</h3>
