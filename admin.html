@@ -243,6 +243,93 @@ const SUPABASE_KEY = "sb_publishable_qhVGsRUvlKOazPQVeqYE-Q_eA8J1J7v ";
       alert("Restaurant added successfully!");
     }
 
+async function loadRestaurantDropdown() {
+    const dropdown = document.getElementById("menuRestaurant");
+
+    const { data, error } = await supabaseClient
+        .from("qr_menu")
+        .select("id, name")
+        .order("name");
+
+    if (error) {
+        console.error(error);
+        dropdown.innerHTML =
+            '<option value="">Could not load restaurants</option>';
+        alert("Could not load restaurants: " + error.message);
+        return;
+    }
+
+    dropdown.innerHTML =
+        '<option value="">Select a restaurant</option>';
+
+    data.forEach(restaurant => {
+        const option = document.createElement("option");
+        option.value = restaurant.id;
+        option.textContent = restaurant.name;
+        dropdown.appendChild(option);
+    });
+}
+
+async function saveMenuItem() {
+    const restaurantId =
+        document.getElementById("menuRestaurant").value;
+
+    const name =
+        document.getElementById("itemName").value.trim();
+
+    const category =
+        document.getElementById("itemCategory").value.trim();
+
+    const description =
+        document.getElementById("itemDescription").value.trim();
+
+    const priceText =
+        document.getElementById("itemPrice").value;
+
+    const imageUrl =
+        document.getElementById("itemImage").value.trim();
+
+    if (!restaurantId || !name || !category || priceText === "") {
+        alert("Please select a restaurant and enter the food name, category, and price.");
+        return;
+    }
+
+    const price = Number(priceText);
+
+    if (!Number.isFinite(price) || price < 0) {
+        alert("Please enter a valid price.");
+        return;
+    }
+
+    const { error } = await supabaseClient
+        .from("menu_items")
+        .insert([{
+            restaurant_id: Number(restaurantId),
+            name: name,
+            category: category,
+            description: description || null,
+            price: price,
+            image_url: imageUrl || null,
+            available: true
+        }]);
+
+    if (error) {
+        console.error(error);
+        alert("Could not save menu item: " + error.message);
+        return;
+    }
+
+    alert("Menu item saved successfully!");
+
+    document.getElementById("itemName").value = "";
+    document.getElementById("itemCategory").value = "";
+    document.getElementById("itemDescription").value = "";
+    document.getElementById("itemPrice").value = "";
+    document.getElementById("itemImage").value = "";
+}
+
+loadRestaurantDropdown();
+
   </script>
 
 </body>
