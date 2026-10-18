@@ -213,8 +213,18 @@
 const SUPABASE_KEY = "sb_publishable_qhVGsRUvlKOazPQVeqYE-Q_eA8J1J7v ";
 
     function showForm() {
-      document.getElementById("restaurantForm").style.display = "block";
+    const form = document.getElementById("restaurantForm");
+
+    if (form) {
+        form.style.display = "block";
+        form.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    } else {
+        alert("Restaurant form not found. Check the restaurantForm ID.");
     }
+}
 
     function saveRestaurant() {
 
