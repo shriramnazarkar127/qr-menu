@@ -288,7 +288,19 @@ async function loadRestaurantDropdown() {
             '<option value="">No restaurants found</option>';
     }
 }
+function showForm() {
+    const form = document.getElementById("restaurantForm");
 
+    if (form) {
+        form.style.display = "block";
+        form.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    } else {
+        alert("Restaurant form not found. Check the restaurantForm ID.");
+    }
+}
     
 }
 
