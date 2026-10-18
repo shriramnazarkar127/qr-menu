@@ -243,8 +243,12 @@ const SUPABASE_KEY = "sb_publishable_qhVGsRUvlKOazPQVeqYE-Q_eA8J1J7v ";
       alert("Restaurant added successfully!");
     }
 
+
 async function loadRestaurantDropdown() {
     const dropdown = document.getElementById("menuRestaurant");
+
+    dropdown.innerHTML =
+        '<option value="">Loading restaurants...</option>';
 
     const { data, error } = await supabaseClient
         .from("qr_menu")
@@ -252,22 +256,30 @@ async function loadRestaurantDropdown() {
         .order("name");
 
     if (error) {
-        console.error(error);
+        console.error("Restaurant dropdown error:", error);
         dropdown.innerHTML =
-            '<option value="">Could not load restaurants</option>';
-        alert("Could not load restaurants: " + error.message);
+            '<option value="">Failed to load restaurants</option>';
+        alert("Restaurant loading error: " + error.message);
         return;
     }
 
     dropdown.innerHTML =
         '<option value="">Select a restaurant</option>';
 
-    data.forEach(restaurant => {
+    data.forEach(function(restaurant) {
         const option = document.createElement("option");
         option.value = restaurant.id;
         option.textContent = restaurant.name;
         dropdown.appendChild(option);
     });
+
+    if (data.length === 0) {
+        dropdown.innerHTML =
+            '<option value="">No restaurants found</option>';
+    }
+}
+
+    
 }
 
 async function saveMenuItem() {
