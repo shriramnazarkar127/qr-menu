@@ -226,32 +226,40 @@ const SUPABASE_KEY = "sb_publishable_qhVGsRUvlKOazPQVeqYE-Q_eA8J1J7v ";
     }
 }
 
-    function saveRestaurant() {
+    
+async function saveRestaurant() {
+  const name = document.getElementById("restaurantName").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const address = document.getElementById("address").value.trim();
 
-      const name = document.getElementById("restaurantName").value;
-      const phone = document.getElementById("phone").value;
-      const address = document.getElementById("address").value;
+  if (!name) {
+    alert("Please enter restaurant name.");
+    return;
+  }
 
-      if (name === "") {
-        alert("Please enter restaurant name.");
-        return;
-      }
+  const { data, error } = await supabaseClient
+    .from("qr_menu")
+    .insert([{ name, phone, address }])
+    .select()
+    .single();
 
-      const restaurantList =
-        document.getElementById("restaurantList");
+  if (error) {
+    console.error("Save restaurant error:", error);
+    alert("Could not save restaurant: " + error.message);
+    return;
+  }
 
-      restaurantList.innerHTML = `
-        <div class="restaurant-card">
-          <h3>${name}</h3>
-          <p>📞 ${phone}</p>
-          <p>📍 ${address}</p>
-        </div>
-      `;
+  alert("Restaurant added successfully!");
 
-      document.getElementById("restaurantForm").style.display = "none";
+  document.getElementById("restaurantForm").style.display = "none";
+  document.getElementById("restaurantName").value = "";
+  document.getElementById("phone").value = "";
+  document.getElementById("address").value = "";
 
-      alert("Restaurant added successfully!");
-    }
+  await loadRestaurants();
+  await loadRestaurantDropdown();
+}
+
 
 
 async function loadRestaurantDropdown() {
