@@ -212,8 +212,10 @@
   <script>
     const SUPABASE_URL = "https://rhxgnuvcjyhxdeflinup.supabase.co";
 const SUPABASE_KEY = "sb_publishable_qhVGsRUvlKOazPQVeqYE-Q_eA8J1J7v ";
-    const supabase = window.supabase;
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
     function showForm() {
   const form = document.getElementById("restaurantForm");
